@@ -148,7 +148,7 @@ conferir_4() {   # conflito resolvido: as duas linhas na branch, sem marcas, PR 
   local br="${pr#* }" conteudo
   conteudo="$(git show "origin/$br:$ARQ")"
   if echo "$conteudo" | grep -qE '^(<<<<<<<|=======|>>>>>>>)'; then
-    DICA="Quase! Ficaram **marcas do Git** no \`EQUIPE.md\` (\`<<<<<<<\`, \`=======\` ou \`>>>>>>>\`). Apague essas três linhas, deixando só as linhas da equipe, e faça o commit na branch."
+    DICA="Ficaram **marcas do Git** no \`EQUIPE.md\` (\`<<<<<<<\`, \`=======\` ou \`>>>>>>>\`). Apague essas três linhas, deixando só as linhas da equipe, e faça o commit na branch."
     return 1
   fi
   # a branch ainda não recebeu a main (conflito não resolvido): espera, sem dica
