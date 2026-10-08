@@ -1,0 +1,41 @@
+# ==========================================================
+#  Curso "Trabalho em equipe": o robô que confere cada passo
+# ==========================================================
+#  Toda a lógica está em .github/scripts/curso.sh
+#  Os textos de cada passo estão em .github/passos/
+name: Curso
+
+on:
+  push:                     # commits em qualquer branch (main, minha-parte...)
+    branches: ["**"]
+  pull_request:             # PR aberto, editado, com commit novo, fechado/mesclado
+    types: [opened, edited, reopened, synchronize, closed]
+  issue_comment:            # quando o aluno comenta (ex.: "conferir")
+    types: [created]
+  workflow_dispatch:        # botão "Run workflow" na aba Actions, para rodar à mão
+
+permissions:
+  contents: write           # o robô faz um commit na main (para criar o conflito)
+  issues: write             # criar a issue, comentar e trocar etiquetas
+  pull-requests: write      # comentar no pull request (revisão)
+
+# um de cada vez, para dois eventos seguidos não responderem em dobro
+concurrency:
+  group: curso
+  cancel-in-progress: false
+
+jobs:
+  conferir:
+    # não roda no repositório-modelo, só nas cópias dos alunos
+    if: ${{ !github.event.repository.is_template }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0    # histórico completo e todas as branches
+      - name: Conferir o passo atual
+        run: bash .github/scripts/curso.sh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENTO: ${{ github.event_name }}
