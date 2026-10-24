@@ -22,7 +22,9 @@ Você fez o fluxo completo de trabalho em equipe:
   <a href="https://maristelaoliveira.github.io/curso-github/certificado.html?aluno={{usuario}}&curso=equipe"><b>👉 Ver meu certificado</b></a>
 </p>
 
-Lá você **baixa a imagem** do certificado e vê quantos cursos da trilha já concluiu. (Se ele ainda não aparecer, espere uns minutinhos: o GitHub leva um tempo para registrar a conclusão.)
+Lá você **baixa a imagem** do certificado e vê quantos cursos da trilha já concluiu.
+
+📌 Para você não se perder: acabei de colocar o botão **🎓 Ver meu certificado** no **README do seu repositório**. É só abrir a página principal dele, a qualquer hora. (Se ele ainda não aparecer, espere uns minutinhos: o GitHub leva um tempo para registrar a conclusão.)
 
 💼 Concluindo os **três** cursos práticos, você ganha o [certificado da trilha completa](https://maristelaoliveira.github.io/curso-github/certificado.html?aluno={{usuario}}&curso=trilha), que vai para o seu **LinkedIn**. Todos os seus estão em [Meus certificados](https://maristelaoliveira.github.io/curso-github/certificado.html).
 

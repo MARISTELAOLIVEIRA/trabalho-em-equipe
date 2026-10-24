@@ -1,6 +1,6 @@
 ## ⚔️ Passo 4 de 5: resolva o conflito
 
-Enquanto você trabalhava, eu (sua colega de equipe 😈) coloquei na `main` uma mudança **na mesma parte** do **EQUIPE.md**. O Git não sabe qual das duas versões manter, e isso é um **conflito**. Acontece o tempo todo em equipe, e resolver é tranquilo:
+Enquanto você trabalhava, eu (sua dupla 😈) coloquei na `main` uma mudança **na mesma parte** do **EQUIPE.md**. O Git não sabe qual das duas versões manter, e isso é um **conflito**. Acontece o tempo todo em equipe, e resolver é tranquilo:
 
 1. Abra o seu [PR #{{pr}}](https://github.com/{{usuario}}/{{repo}}/pull/{{pr}}). Lá embaixo aparece *This branch has conflicts that must be resolved*
 2. Clique em **Resolve conflicts**

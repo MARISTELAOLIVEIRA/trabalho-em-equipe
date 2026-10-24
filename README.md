@@ -5,7 +5,7 @@
 Curso prático da **Profª Maristela Oliveira** (pode chamar de Stela 😉) · Faculdade de Tecnologia e Inovação Senac DF
 
 Projeto em grupo sem bagunça: **branch**, **pull request**, **revisão**, **conflito** e **merge**.
-Desta vez eu <img src="https://maristelaoliveira.github.io/assets/img/octocat-stela.webp" width="30" height="30" alt="Octocat da Stela" align="absmiddle"> faço o papel de colega de equipe: reviso o seu trabalho, peço mudanças e até mexo no mesmo arquivo que você. 😈
+Desta vez a equipe somos **nós dois**: eu <img src="https://maristelaoliveira.github.io/assets/img/octocat-stela.webp" width="30" height="30" alt="Octocat da Stela" align="absmiddle"> faço o papel de sua dupla: reviso o seu trabalho, peço mudanças e até mexo no mesmo arquivo que você. 😈
 **A cada tarefa, eu confiro automaticamente e respondo com o próximo passo.** Tudo pelo navegador. ⏱️ uns 30 minutos.
 
 ## 🚀 Como começar

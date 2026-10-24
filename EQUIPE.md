@@ -2,7 +2,7 @@
 
 ## Integrantes
 
-- Stela · professora e orientadora
+- Stela · sua dupla neste projeto
 
 ## Combinados do time
 
