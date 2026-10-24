@@ -31,13 +31,35 @@ LINHA_STELA="- Stela · sua dupla neste projeto"
 LINHA_ROBO="- Robô do curso · revisor automático 🤖"   # PARA EDITAR: a linha que causa o conflito
 PR=""
 
-# PARA EDITAR: o "cabeçalho" de todo comentário do robô
-CABECALHO='<img src="https://maristelaoliveira.github.io/curso-github/assets/memoji.png" width="48" align="left" alt="">
+# PARA EDITAR: o visual dos comentários do robô. A Stela fala num balão colorido ao lado do memoji
+# (tipo: TIP = verde, WARNING = laranja, NOTE = azul), e cada passo certo vem com confete e placar.
+CABECALHO=""
+ASSETS="https://maristelaoliveira.github.io/curso-github/assets"
 
-**Stela diz:**
-<br clear="left">
+# fala <memoji> <tipo> <texto>
+fala() {
+  local texto="${3//$'\n'/$'\n> '}"
+  printf '<table><tr><td width="96" align="center"><img src="%s/memoji/%s.webp" width="80" alt="Stela"></td><td>\n\n> [!%s]\n> %s\n\n</td></tr></table>\n' "$ASSETS" "$1" "$2" "$texto"
+}
 
-'
+# 🟩🟩⬜⬜⬜ 2 de 5
+placar() {
+  local barra="" i
+  for ((i = 1; i <= ULTIMO_PASSO; i++)); do
+    if [ "$i" -le "$PASSO" ]; then barra+="🟩"; else barra+="⬜"; fi
+  done
+  printf '<p align="center">%s &nbsp; <b>%s de %s</b></p>\n' "$barra" "$PASSO" "$ULTIMO_PASSO"
+}
+
+# confete + parabéns do passo + placar (no último passo, o confete é o grande)
+sucesso() {
+  local gif=confete memojis=(festa joinha olhos-de-estrela punho piscando)
+  [ "$PASSO" -ge "$ULTIMO_PASSO" ] && gif=confete-grande
+  printf '<p align="center"><img src="%s/confete/%s.gif" width="600" alt=""></p>\n\n' "$ASSETS" "$gif"
+  fala "${memojis[$((PASSO % 5))]}" TIP "${FEITO[$PASSO]}"
+  echo
+  placar
+}
 
 # PARA EDITAR: a frase de parabéns de cada passo concluído
 FEITO[1]="✅ **Passo 1 concluído!** Sua branch está criada e você entrou para a equipe (por enquanto, só na sua branch). 🌿"
@@ -90,7 +112,7 @@ tem_nome_e_curso() {
 }
 
 # ---------- ações do robô como "colega de equipe" ----------
-postar_revisao() { comentar_pr "$REVISAO"; }
+postar_revisao() { comentar_pr "$(fala notebook NOTE "$REVISAO")"; }
 
 criar_conflito() {
   # coloca a LINHA_ROBO na main, logo abaixo da linha da Stela: o mesmo lugar onde o aluno escreveu
@@ -101,9 +123,9 @@ criar_conflito() {
   git commit -q -am "Adiciona o robô do curso à equipe"
   git push -q origin main
   atualizar
-  comentar_pr "✅ **Revisão aprovada!** Obrigada pela mudança. 🙌
+  comentar_pr "$(fala joinha TIP "✅ **Revisão aprovada!** Obrigada pela mudança. 🙌
 
-Só que eu também mexi no \`EQUIPE.md\`, direto na \`main\`... Veja o próximo passo na issue do curso. 😈"
+Só que eu também mexi no \`EQUIPE.md\`, direto na \`main\`... Veja o próximo passo na issue do curso. 😈")"
 }
 
 # no fim do curso, o certificado entra no topo do README do aluno: a issue fecha e some da vista, o README fica
@@ -197,7 +219,7 @@ if [ -z "$ISSUE" ]; then
   gh label create curso     --repo "$REPO" --color 3fb950 --description "Curso prático" --force >/dev/null
   gh label create concluido --repo "$REPO" --color 7ee2b8 --force >/dev/null
   for n in $(seq 1 "$ULTIMO_PASSO"); do gh label create "passo-$n" --repo "$REPO" --color e3c26b --force >/dev/null; done
-  corpo="${CABECALHO}$(renderizar "$PASSOS/0-boas-vindas.md")
+  corpo="$(fala acenando NOTE "$(renderizar "$PASSOS/0-boas-vindas.md")")
 
 ---
 
@@ -225,14 +247,14 @@ while [ "$PASSO" -le "$ULTIMO_PASSO" ]; do
       3) criar_conflito ;;
     esac
     if [ "$PASSO" -lt "$ULTIMO_PASSO" ]; then
-      comentar "${FEITO[$PASSO]}
+      comentar "$(sucesso)
 
 ---
 
 $(renderizar "$(arquivo_do_passo $((PASSO + 1)))")"
       gh issue edit "$ISSUE" --repo "$REPO" --remove-label "passo-$PASSO" --add-label "passo-$((PASSO + 1))" >/dev/null
     else
-      comentar "${FEITO[$PASSO]}
+      comentar "$(sucesso)
 
 ---
 
@@ -245,7 +267,7 @@ $(renderizar "$PASSOS/6-fim.md")"
     PASSO=$((PASSO + 1))
     AVANCOU=1
   else
-    if [ "$AVANCOU" = 0 ] && [ -n "$DICA" ]; then comentar "🤔 **Quase!** $DICA"; fi
+    if [ "$AVANCOU" = 0 ] && [ -n "$DICA" ]; then comentar "$(fala ideia WARNING "**Quase!** $DICA")"; fi
     break
   fi
 done
