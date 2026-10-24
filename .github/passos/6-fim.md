@@ -26,4 +26,6 @@ Lá você **baixa a imagem** do certificado e vê quantos cursos da trilha já c
 
 💼 Concluindo os **três** cursos práticos, você ganha o [certificado da trilha completa](https://maristelaoliveira.github.io/curso-github/certificado.html?aluno={{usuario}}&curso=trilha), que vai para o seu **LinkedIn**. Todos os seus estão em [Meus certificados](https://maristelaoliveira.github.io/curso-github/certificado.html).
 
+👉 **O último da trilha é o [Git no VS Code](https://github.com/MARISTELAOLIVEIRA/git-vscode)**, para fazer **em casa**: precisa do **Git e do VS Code instalados** no seu computador. Uns 30 minutos.
+
 Vou fechar esta issue como concluída. Até a próxima! ⭐
