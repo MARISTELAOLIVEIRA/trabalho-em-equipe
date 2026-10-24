@@ -9,7 +9,7 @@ Enquanto você trabalhava, eu (sua dupla 😈) coloquei na `main` uma mudança *
    <<<<<<< minha-parte
    - Seu Nome · Seu Curso
    =======
-   - Robô do curso · revisor automático 🤖
+   - Octocat · mascote da equipe 🐙
    >>>>>>> main
    ```
    A sua versão fica em cima e a da `main` embaixo. Aqui as **duas** linhas devem ficar: **apague só as três linhas de marcas** (`<<<<<<<`, `=======` e `>>>>>>>`)

@@ -28,7 +28,7 @@ TITULO="👥 Trabalho em equipe"
 ULTIMO_PASSO=5
 ARQ="EQUIPE.md"
 LINHA_STELA="- Stela · sua dupla neste projeto"
-LINHA_ROBO="- Robô do curso · revisor automático 🤖"   # PARA EDITAR: a linha que causa o conflito
+LINHA_ROBO="- Octocat · mascote da equipe 🐙"   # PARA EDITAR: a linha que causa o conflito
 PR=""
 
 # PARA EDITAR: o visual dos comentários do robô. A Stela fala num balão colorido ao lado do memoji
@@ -116,11 +116,11 @@ postar_revisao() { comentar_pr "$(fala notebook NOTE "$REVISAO")"; }
 
 criar_conflito() {
   # coloca a LINHA_ROBO na main, logo abaixo da linha da Stela: o mesmo lugar onde o aluno escreveu
-  git config user.name "Robô do curso"
+  git config user.name "Stela (curso)"
   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
   git checkout -q -B main origin/main
   awk -v stela="$LINHA_STELA" -v robo="$LINHA_ROBO" '{print} $0 == stela {print robo}' "$ARQ" > "$ARQ.novo" && mv "$ARQ.novo" "$ARQ"
-  git commit -q -am "Adiciona o robô do curso à equipe"
+  git commit -q -am "Adiciona o Octocat à equipe"
   git push -q origin main
   atualizar
   comentar_pr "$(fala joinha TIP "✅ **Revisão aprovada!** Obrigada pela mudança. 🙌
@@ -130,7 +130,7 @@ Só que eu também mexi no \`EQUIPE.md\`, direto na \`main\`... Veja o próximo 
 
 # no fim do curso, o certificado entra no topo do README do aluno: a issue fecha e some da vista, o README fica
 readme_final() {
-  git config user.name "Robô do curso"
+  git config user.name "Stela (curso)"
   git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
   git fetch -q origin main
   git checkout -q -B main origin/main
@@ -188,7 +188,7 @@ conferir_4() {   # conflito resolvido: as duas linhas na branch, sem marcas, PR 
   # a branch ainda não recebeu a main (conflito não resolvido): espera, sem dica
   git merge-base --is-ancestor origin/main "origin/$br" || return 1
   if ! echo "$conteudo" | grep -qF -- "$LINHA_ROBO"; then
-    DICA="O conflito foi resolvido, mas a minha linha (\`$LINHA_ROBO\`) sumiu! 😢 Em equipe, a gente não apaga o trabalho do colega: acrescente essa linha de volta no \`EQUIPE.md\` da sua branch."
+    DICA="O conflito foi resolvido, mas a linha do nosso mascote (\`$LINHA_ROBO\`) sumiu! 😢 Em equipe, a gente não apaga o trabalho do colega: acrescente essa linha de volta no \`EQUIPE.md\` da sua branch."
     return 1
   fi
   if ! echo "$conteudo" | tem_nome_e_curso; then DICA="A sua linha, com nome e curso, sumiu do \`EQUIPE.md\`. Acrescente de volta na sua branch."; return 1; fi
